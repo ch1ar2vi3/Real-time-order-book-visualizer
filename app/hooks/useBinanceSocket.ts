@@ -22,7 +22,7 @@ export function useBinanceSocket() {
   } = useBinanceStore();
 
   const wsRef = useRef<WebSocket | null>(null);
-  const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const reconnectTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isConnectedRef = useRef<boolean>(false);
 
   const processOrderBookUpdate = useCallback((update: BinanceOrderBookUpdate) => {
@@ -107,10 +107,10 @@ export function useBinanceSocket() {
       setError('Error initializing data');
       
       // Fallback with minimal sample data
-      const minimalBids = [["29000.00", "1.0"], ["28900.00", "2.0"]];
-      const minimalAsks = [["29100.00", "1.0"], ["29200.00", "2.0"]];
+      const minimalBids: [string, string][] = [["29000.00", "1.0"], ["28900.00", "2.0"]];
+      const minimalAsks: [string, string][] = [["29100.00", "1.0"], ["29200.00", "2.0"]];
       
-      updateOrderBook(minimalBids, minimalAsks);
+      updateOrderBook(minimalBids as [string, string][], minimalAsks as [string, string][]);
     }
   }, [updateOrderBook, addTrade, setError]);
 
