@@ -29,7 +29,7 @@ npm install
 npm run dev
 ```
 
-4. Open [real-time-order-book-visualizer-pi.vercel.app) in your browser
+4. Open [https://real-time-order-book-visualizer-pi.vercel.app/] in your browser
 
 ### Production Build
 
